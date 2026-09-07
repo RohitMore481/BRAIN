@@ -1,0 +1,370 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1100" width="100%" height="100%" style="background-color: #0b0f19; font-family: 'Inter', system-ui, -apple-system, sans-serif;">
+  <defs>
+    <!-- Background Gradients -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b0f19"/>
+      <stop offset="50%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#070a12"/>
+    </linearGradient>
+
+    <!-- Phase 1 Box Gradient -->
+    <linearGradient id="p1Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284c7" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#4f46e5" stop-opacity="0.08"/>
+    </linearGradient>
+
+    <!-- Phase 2 Box Gradient -->
+    <linearGradient id="p2Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7e22ce" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#581c87" stop-opacity="0.08"/>
+    </linearGradient>
+
+    <!-- Node Gradient -->
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+
+    <!-- Directional Arrow Markers -->
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+    </marker>
+
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#34d399"/>
+    </marker>
+
+    <marker id="arrowPurple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#c084fc"/>
+    </marker>
+
+    <marker id="arrowRose" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#f43f5e"/>
+    </marker>
+
+    <!-- Glow Filters -->
+    <filter id="glowBlue" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <filter id="glowPurple" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <filter id="glowGreen" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1400" height="1100" fill="url(#bgGrad)"/>
+
+  <!-- Background Grid Lines -->
+  <g stroke="#1e293b" stroke-width="1" stroke-dasharray="4 8" opacity="0.3">
+    <path d="M 0 150 H 1400 M 0 300 H 1400 M 0 450 H 1400 M 0 600 H 1400 M 0 750 H 1400 M 0 900 H 1400"/>
+    <path d="M 200 0 V 1100 M 400 0 V 1100 M 600 0 V 1100 M 800 0 V 1100 M 1000 0 V 1100 M 1200 0 V 1100"/>
+  </g>
+
+  <!-- ================= HEADER SECTION ================= -->
+  <g transform="translate(50, 35)">
+    <text x="0" y="0" fill="#f8fafc" font-size="28" font-weight="900" letter-spacing="-0.5">Battery Digital Twin System Architecture</text>
+    <text x="0" y="26" fill="#94a3b8" font-size="14" font-weight="500">Virtual Battery Behaviour Replica &amp; Future AI Prediction Integration</text>
+  </g>
+
+  <!-- Phase Banners Top Container -->
+  <g transform="translate(720, 30)">
+    <rect x="0" y="0" width="310" height="38" rx="8" fill="#0284c7" opacity="0.9"/>
+    <text x="155" y="24" fill="#ffffff" font-size="12" font-weight="800" text-anchor="middle">Phase 1: Create battery behaviour replica</text>
+
+    <rect x="320" y="0" width="310" height="38" rx="8" fill="#7e22ce" opacity="0.9"/>
+    <text x="475" y="24" fill="#ffffff" font-size="12" font-weight="800" text-anchor="middle">Phase 2: Add physics and AI prediction models</text>
+  </g>
+
+  <!-- 10-Second Explainer Banner -->
+  <g transform="translate(50, 85)">
+    <rect x="0" y="0" width="1300" height="42" rx="8" fill="#1e1b4b" stroke="#6366f1" stroke-width="1.5"/>
+    <text x="650" y="26" fill="#e0e7ff" font-size="13" font-weight="700" text-anchor="middle">
+      INPUT PARAMETERS  ➜  BATTERY DIGITAL TWIN  ➜  BATTERY STATE OUTPUT  ➜  AI PREDICTION (FUTURE)
+    </text>
+  </g>
+
+  <!-- ================= PHASE 1: VIRTUAL BATTERY REPLICA ================= -->
+  <g transform="translate(50, 150)">
+    <!-- Container Box -->
+    <rect x="0" y="0" width="1300" height="630" rx="14" fill="url(#p1Grad)" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="6 4"/>
+    <rect x="20" y="-14" width="380" height="28" rx="6" fill="#0284c7"/>
+    <text x="210" y="5" fill="#ffffff" font-size="12" font-weight="800" text-anchor="middle" letter-spacing="1">PHASE 1: VIRTUAL BATTERY BEHAVIOUR REPLICA</text>
+
+    <!-- SECTION 1: INPUT PARAMETERS (5 Cards) -->
+    <g transform="translate(30, 35)">
+      <text x="0" y="0" fill="#38bdf8" font-size="14" font-weight="800" letter-spacing="0.5">1. INPUT PARAMETERS (Sensory Telemetry)</text>
+
+      <!-- Input Card 1 -->
+      <g transform="translate(0, 15)">
+        <rect x="0" y="0" width="230" height="75" rx="8" fill="url(#cardGrad)" stroke="#0284c7" stroke-width="1.5"/>
+        <circle cx="25" cy="37" r="14" fill="#0284c7"/>
+        <text x="25" y="42" fill="#fff" font-size="12" font-weight="900" text-anchor="middle">I</text>
+        <text x="48" y="32" fill="#f8fafc" font-size="14" font-weight="800">Current</text>
+        <text x="48" y="50" fill="#94a3b8" font-size="11">Amperes (Charge / Discharge)</text>
+      </g>
+
+      <!-- Input Card 2 -->
+      <g transform="translate(252, 15)">
+        <rect x="0" y="0" width="230" height="75" rx="8" fill="url(#cardGrad)" stroke="#0284c7" stroke-width="1.5"/>
+        <circle cx="25" cy="37" r="14" fill="#0284c7"/>
+        <text x="25" y="42" fill="#fff" font-size="12" font-weight="900" text-anchor="middle">V</text>
+        <text x="48" y="32" fill="#f8fafc" font-size="14" font-weight="800">Voltage</text>
+        <text x="48" y="50" fill="#94a3b8" font-size="11">Terminal Volts (V)</text>
+      </g>
+
+      <!-- Input Card 3 -->
+      <g transform="translate(504, 15)">
+        <rect x="0" y="0" width="230" height="75" rx="8" fill="url(#cardGrad)" stroke="#0284c7" stroke-width="1.5"/>
+        <circle cx="25" cy="37" r="14" fill="#0284c7"/>
+        <text x="25" y="42" fill="#fff" font-size="12" font-weight="900" text-anchor="middle">T</text>
+        <text x="48" y="32" fill="#f8fafc" font-size="14" font-weight="800">Temperature</text>
+        <text x="48" y="50" fill="#94a3b8" font-size="11">Ambient &amp; Surface (°C)</text>
+      </g>
+
+      <!-- Input Card 4 -->
+      <g transform="translate(756, 15)">
+        <rect x="0" y="0" width="230" height="75" rx="8" fill="url(#cardGrad)" stroke="#0284c7" stroke-width="1.5"/>
+        <circle cx="25" cy="37" r="14" fill="#0284c7"/>
+        <text x="25" y="42" fill="#fff" font-size="10" font-weight="900" text-anchor="middle">SOC</text>
+        <text x="48" y="32" fill="#f8fafc" font-size="14" font-weight="800">State of Charge</text>
+        <text x="48" y="50" fill="#94a3b8" font-size="11">Present Charge Level (0-100%)</text>
+      </g>
+
+      <!-- Input Card 5 -->
+      <g transform="translate(1008, 15)">
+        <rect x="0" y="0" width="232" height="75" rx="8" fill="url(#cardGrad)" stroke="#0284c7" stroke-width="1.5"/>
+        <circle cx="25" cy="37" r="14" fill="#0284c7"/>
+        <text x="25" y="42" fill="#fff" font-size="10" font-weight="900" text-anchor="middle">Op</text>
+        <text x="48" y="32" fill="#f8fafc" font-size="13" font-weight="800">Charging / Discharging</text>
+        <text x="48" y="50" fill="#94a3b8" font-size="11">Operating Profile &amp; Load</text>
+      </g>
+    </g>
+
+    <!-- Arrow Input -> Digital Twin -->
+    <path d="M 650 140 V 175" stroke="#38bdf8" stroke-width="3.5" marker-end="url(#arrowBlue)" filter="url(#glowBlue)"/>
+
+    <!-- SECTION 2: BATTERY DIGITAL TWIN CORE (4 Functional Blocks) -->
+    <g transform="translate(30, 185)">
+      <text x="0" y="0" fill="#818cf8" font-size="14" font-weight="800" letter-spacing="0.5">2. BATTERY COMPONENT DIGITAL TWIN LAYER (Sequential Behaviour Blocks)</text>
+
+      <!-- Block 1: Electrical Behaviour -->
+      <g transform="translate(0, 20)" filter="url(#glowBlue)">
+        <rect x="0" y="0" width="280" height="230" rx="12" fill="#1e1b4b" stroke="#38bdf8" stroke-width="2"/>
+        <rect x="15" y="15" width="40" height="40" rx="8" fill="#0284c7"/>
+        <text x="35" y="41" fill="#fff" font-size="16" font-weight="900" text-anchor="middle">⚡</text>
+        <text x="68" y="34" fill="#ffffff" font-size="16" font-weight="800">ELECTRICAL</text>
+        <text x="68" y="52" fill="#ffffff" font-size="16" font-weight="800">BEHAVIOUR</text>
+
+        <line x1="15" y1="70" x2="265" y2="70" stroke="#334155" stroke-width="1.5"/>
+        <text x="20" y="95" fill="#e2e8f0" font-size="13" font-weight="600">• Voltage Response Simulation</text>
+        <text x="20" y="122" fill="#e2e8f0" font-size="13" font-weight="600">• Current Flow Distribution</text>
+        <text x="20" y="149" fill="#e2e8f0" font-size="13" font-weight="600">• Internal Resistance Modeling</text>
+        <text x="20" y="176" fill="#e2e8f0" font-size="13" font-weight="600">• Terminal Power I/O</text>
+
+        <rect x="15" y="195" width="250" height="24" rx="4" fill="#0f172a"/>
+        <text x="140" y="211" fill="#38bdf8" font-size="11" font-weight="700" text-anchor="middle">V_terminal = V_ocv - I·R_int</text>
+      </g>
+
+      <!-- Arrow Block 1 -> Block 2 -->
+      <path d="M 290 135 H 315" stroke="#38bdf8" stroke-width="3.5" marker-end="url(#arrowBlue)"/>
+
+      <!-- Block 2: Battery Cell Behaviour -->
+      <g transform="translate(325, 20)">
+        <rect x="0" y="0" width="280" height="230" rx="12" fill="url(#cardGrad)" stroke="#6366f1" stroke-width="2"/>
+        <rect x="15" y="15" width="40" height="40" rx="8" fill="#4f46e5"/>
+        <text x="35" y="41" fill="#fff" font-size="16" font-weight="900" text-anchor="middle">🔋</text>
+        <text x="68" y="34" fill="#ffffff" font-size="16" font-weight="800">BATTERY CELL</text>
+        <text x="68" y="52" fill="#ffffff" font-size="16" font-weight="800">BEHAVIOUR</text>
+
+        <line x1="15" y1="70" x2="265" y2="70" stroke="#334155" stroke-width="1.5"/>
+        <text x="20" y="95" fill="#e2e8f0" font-size="13" font-weight="600">• Energy Storage Tracking</text>
+        <text x="20" y="122" fill="#e2e8f0" font-size="13" font-weight="600">• Charge / Discharge Dynamics</text>
+        <text x="20" y="149" fill="#e2e8f0" font-size="13" font-weight="600">• Real-Time SOC Calculation</text>
+        <text x="20" y="176" fill="#e2e8f0" font-size="13" font-weight="600">• Open Circuit Voltage (OCV)</text>
+
+        <rect x="15" y="195" width="250" height="24" rx="4" fill="#0f172a"/>
+        <text x="140" y="211" fill="#818cf8" font-size="11" font-weight="700" text-anchor="middle">SOC = ∫ (I / Q_nominal) dt</text>
+      </g>
+
+      <!-- Arrow Block 2 -> Block 3 -->
+      <path d="M 615 135 H 640" stroke="#38bdf8" stroke-width="3.5" marker-end="url(#arrowBlue)"/>
+
+      <!-- Block 3: Thermal Behaviour -->
+      <g transform="translate(650, 20)">
+        <rect x="0" y="0" width="280" height="230" rx="12" fill="url(#cardGrad)" stroke="#ffb703" stroke-width="2"/>
+        <rect x="15" y="15" width="40" height="40" rx="8" fill="#d97706"/>
+        <text x="35" y="41" fill="#fff" font-size="16" font-weight="900" text-anchor="middle">🔥</text>
+        <text x="68" y="34" fill="#ffffff" font-size="16" font-weight="800">THERMAL</text>
+        <text x="68" y="52" fill="#ffffff" font-size="16" font-weight="800">BEHAVIOUR</text>
+
+        <line x1="15" y1="70" x2="265" y2="70" stroke="#334155" stroke-width="1.5"/>
+        <text x="20" y="95" fill="#e2e8f0" font-size="13" font-weight="600">• Joule Heat Generation (I²R)</text>
+        <text x="20" y="122" fill="#e2e8f0" font-size="13" font-weight="600">• Internal Temperature Rise</text>
+        <text x="20" y="149" fill="#e2e8f0" font-size="13" font-weight="600">• Heat Dissipation to Ambient</text>
+        <text x="20" y="176" fill="#e2e8f0" font-size="13" font-weight="600">• Thermal Boundary Exchange</text>
+
+        <rect x="15" y="195" width="250" height="24" rx="4" fill="#0f172a"/>
+        <text x="140" y="211" fill="#ffb703" font-size="11" font-weight="700" text-anchor="middle">q_gen = I²·R_int + T·ΔS</text>
+      </g>
+
+      <!-- Arrow Block 3 -> Block 4 -->
+      <path d="M 940 135 H 965" stroke="#38bdf8" stroke-width="3.5" marker-end="url(#arrowBlue)"/>
+
+      <!-- Block 4: Battery Health State -->
+      <g transform="translate(975, 20)">
+        <rect x="0" y="0" width="265" height="230" rx="12" fill="url(#cardGrad)" stroke="#a855f7" stroke-width="2"/>
+        <rect x="15" y="15" width="40" height="40" rx="8" fill="#7e22ce"/>
+        <text x="35" y="41" fill="#fff" font-size="16" font-weight="900" text-anchor="middle">📊</text>
+        <text x="68" y="34" fill="#ffffff" font-size="16" font-weight="800">BATTERY HEALTH</text>
+        <text x="68" y="52" fill="#ffffff" font-size="16" font-weight="800">STATE</text>
+
+        <line x1="15" y1="70" x2="250" y2="70" stroke="#334155" stroke-width="1.5"/>
+        <text x="20" y="95" fill="#e2e8f0" font-size="13" font-weight="600">• Capacity Fade Tracking</text>
+        <text x="20" y="122" fill="#e2e8f0" font-size="13" font-weight="600">• Resistance Growth Model</text>
+        <text x="20" y="149" fill="#e2e8f0" font-size="13" font-weight="600">• Degradation Accumulation</text>
+        <text x="20" y="176" fill="#e2e8f0" font-size="13" font-weight="600">• Battery State of Health</text>
+
+        <rect x="15" y="195" width="235" height="24" rx="4" fill="#0f172a"/>
+        <text x="132" y="211" fill="#c084fc" font-size="11" font-weight="700" text-anchor="middle">SOH = Q_max / Q_new</text>
+      </g>
+    </g>
+
+    <!-- Arrow Digital Twin -> Virtual Output -->
+    <path d="M 650 470 V 500" stroke="#34d399" stroke-width="3.5" marker-end="url(#arrowGreen)" filter="url(#glowGreen)"/>
+
+    <!-- SECTION 3: VIRTUAL BATTERY OUTPUT (Large Card) -->
+    <g transform="translate(30, 510)" filter="url(#glowGreen)">
+      <rect x="0" y="0" width="1240" height="95" rx="12" fill="#064e3b" stroke="#34d399" stroke-width="2"/>
+      <rect x="20" y="20" width="55" height="55" rx="10" fill="#059669"/>
+      <text x="47" y="55" fill="#fff" font-size="24" font-weight="900" text-anchor="middle">💻</text>
+
+      <text x="90" y="42" fill="#ffffff" font-size="18" font-weight="900">VIRTUAL BATTERY OUTPUT (Real-Time Virtual Replica Response)</text>
+      <text x="90" y="64" fill="#a7f3d0" font-size="13" font-weight="600">
+        Provides synchronized virtual telemetry: Real-Time Voltage Response • Dynamic SOC • Simulated Core Heat • Health Degradation State
+      </text>
+    </g>
+  </g>
+
+  <!-- ================= PHASE 2: AI PREDICTION LAYER (FUTURE) ================= -->
+  <g transform="translate(50, 810)">
+    <!-- Container Box -->
+    <rect x="0" y="0" width="1300" height="240" rx="14" fill="url(#p2Grad)" stroke="#a855f7" stroke-width="2" stroke-dasharray="6 4"/>
+    <rect x="20" y="-14" width="450" height="28" rx="6" fill="#7e22ce"/>
+    <text x="245" y="5" fill="#ffffff" font-size="12" font-weight="800" text-anchor="middle" letter-spacing="1">PHASE 2: AI + PINN PREDICTION LAYER (FUTURE EXTENSION)</text>
+
+    <!-- Connection Line from Phase 1 to Phase 2 -->
+    <path d="M 650 -30 V 25" stroke="#c084fc" stroke-width="3" stroke-dasharray="4 4" marker-end="url(#arrowPurple)"/>
+
+    <!-- AI Module Badge -->
+    <g transform="translate(30, 30)">
+      <rect x="0" y="0" width="310" height="175" rx="10" fill="url(#cardGrad)" stroke="#c084fc" stroke-width="1.5"/>
+      <rect x="15" y="15" width="36" height="36" rx="8" fill="#6b21a8"/>
+      <text x="33" y="38" fill="#fff" font-size="16" font-weight="900" text-anchor="middle">🤖</text>
+      <text x="62" y="32" fill="#ffffff" font-size="15" font-weight="800">AI + PINN Module</text>
+      <text x="62" y="48" fill="#c084fc" font-size="11" font-weight="600">Machine Learning &amp; Physics Neural Net</text>
+
+      <line x1="15" y1="62" x2="295" y2="62" stroke="#334155" stroke-width="1"/>
+      <text x="15" y="82" fill="#e2e8f0" font-size="12">• Physics-Informed Neural Network (PINN)</text>
+      <text x="15" y="104" fill="#e2e8f0" font-size="12">• LSTM / GNN Time-Series Forecasting</text>
+      <text x="15" y="126" fill="#e2e8f0" font-size="12">• Domain-Constrained Loss Optimization</text>
+      <text x="15" y="148" fill="#c084fc" font-size="11" font-family="monospace">L_total = L_data + λ·L_physics</text>
+    </g>
+
+    <!-- Arrow AI Module -> 4 Outputs -->
+    <path d="M 350 115 H 375" stroke="#c084fc" stroke-width="3" marker-end="url(#arrowPurple)"/>
+
+    <!-- 4 PREDICTION OUTPUT CARDS -->
+    <g transform="translate(385, 30)">
+      <!-- Output 1: Temperature Prediction -->
+      <g transform="translate(0, 0)">
+        <rect x="0" y="0" width="205" height="175" rx="10" fill="#1e1b4b" stroke="#ffb703" stroke-width="1.5"/>
+        <text x="15" y="30" fill="#ffb703" font-size="14" font-weight="800">1. Temperature</text>
+        <text x="15" y="48" fill="#ffb703" font-size="14" font-weight="800">Prediction</text>
+        <line x1="15" y1="60" x2="190" y2="60" stroke="#334155" stroke-width="1"/>
+        <text x="15" y="82" fill="#e2e8f0" font-size="12">• Thermal Runaway</text>
+        <text x="15" y="100" fill="#e2e8f0" font-size="12">  Forecasting</text>
+        <text x="15" y="122" fill="#e2e8f0" font-size="12">• Core Hotspot</text>
+        <text x="15" y="140" fill="#e2e8f0" font-size="12">  Detection</text>
+      </g>
+
+      <!-- Output 2: SOH Prediction -->
+      <g transform="translate(225, 0)">
+        <rect x="0" y="0" width="205" height="175" rx="10" fill="#1e1b4b" stroke="#818cf8" stroke-width="1.5"/>
+        <text x="15" y="30" fill="#818cf8" font-size="14" font-weight="800">2. SOH</text>
+        <text x="15" y="48" fill="#818cf8" font-size="14" font-weight="800">Prediction</text>
+        <line x1="15" y1="60" x2="190" y2="60" stroke="#334155" stroke-width="1"/>
+        <text x="15" y="82" fill="#e2e8f0" font-size="12">• Capacity Fade</text>
+        <text x="15" y="100" fill="#e2e8f0" font-size="12">  Trajectory</text>
+        <text x="15" y="122" fill="#e2e8f0" font-size="12">• Remaining Useful</text>
+        <text x="15" y="140" fill="#e2e8f0" font-size="12">  Life (RUL)</text>
+      </g>
+
+      <!-- Output 3: Anomaly Detection -->
+      <g transform="translate(450, 0)">
+        <rect x="0" y="0" width="205" height="175" rx="10" fill="#1e1b4b" stroke="#c084fc" stroke-width="1.5"/>
+        <text x="15" y="30" fill="#c084fc" font-size="14" font-weight="800">3. Anomaly</text>
+        <text x="15" y="48" fill="#c084fc" font-size="14" font-weight="800">Detection</text>
+        <line x1="15" y1="60" x2="190" y2="60" stroke="#334155" stroke-width="1"/>
+        <text x="15" y="82" fill="#e2e8f0" font-size="12">• Internal Short</text>
+        <text x="15" y="100" fill="#e2e8f0" font-size="12">  Circuit Early Warning</text>
+        <text x="15" y="122" fill="#e2e8f0" font-size="12">• Sensor Fault &amp;</text>
+        <text x="15" y="140" fill="#e2e8f0" font-size="12">  Drift Detection</text>
+      </g>
+
+      <!-- Output 4: Risk Assessment -->
+      <g transform="translate(675, 0)" filter="url(#glowRose)">
+        <rect x="0" y="0" width="210" height="175" rx="10" fill="#31121f" stroke="#f43f5e" stroke-width="1.5"/>
+        <text x="15" y="30" fill="#f43f5e" font-size="14" font-weight="800">4. Risk</text>
+        <text x="15" y="48" fill="#f43f5e" font-size="14" font-weight="800">Assessment</text>
+        <line x1="15" y1="60" x2="195" y2="60" stroke="#334155" stroke-width="1"/>
+        <text x="15" y="82" fill="#e2e8f0" font-size="12">• Battery Safety</text>
+        <text x="15" y="100" fill="#e2e8f0" font-size="12">  Index Score</text>
+        <text x="15" y="122" fill="#e2e8f0" font-size="12">• Venting &amp; Fire</text>
+        <text x="15" y="140" fill="#e2e8f0" font-size="12">  Hazard Prevention</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- ================= CLOSED-LOOP FEEDBACK ARROW ================= -->
+  <g transform="translate(50, 0)">
+    <path d="M 1280 830 Q 1380 500 1280 340 H 1255" fill="none" stroke="#f43f5e" stroke-width="3" stroke-dasharray="6 4" marker-end="url(#arrowRose)"/>
+    <g transform="translate(1220, 560)">
+      <rect x="-60" y="-15" width="160" height="30" rx="6" fill="#1f121a" stroke="#f43f5e" stroke-width="1.5"/>
+      <text x="20" y="5" fill="#f43f5e" font-size="10" font-weight="800" text-anchor="middle">CLOSED-LOOP FEEDBACK</text>
+    </g>
+  </g>
+
+  <!-- ================= LEGEND BAR ================= -->
+  <g transform="translate(50, 1058)">
+    <rect x="0" y="0" width="1300" height="38" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <text x="20" y="24" fill="#f8fafc" font-size="11" font-weight="800">PRESENTATION LEGEND:</text>
+
+    <g transform="translate(160, 15)">
+      <line x1="0" y1="9" x2="30" y2="9" stroke="#38bdf8" stroke-width="3" marker-end="url(#arrowBlue)"/>
+      <text x="38" y="13" fill="#e2e8f0" font-size="11" font-weight="600">Primary Data &amp; Behaviour Flow</text>
+    </g>
+
+    <g transform="translate(420, 15)">
+      <line x1="0" y1="9" x2="30" y2="9" stroke="#34d399" stroke-width="3" marker-end="url(#arrowGreen)"/>
+      <text x="38" y="13" fill="#e2e8f0" font-size="11" font-weight="600">Virtual Battery Output Stream</text>
+    </g>
+
+    <g transform="translate(680, 15)">
+      <line x1="0" y1="9" x2="30" y2="9" stroke="#c084fc" stroke-width="2" stroke-dasharray="4 4" marker-end="url(#arrowPurple)"/>
+      <text x="38" y="13" fill="#e2e8f0" font-size="11" font-weight="600">Future AI Prediction Module Connection</text>
+    </g>
+
+    <g transform="translate(990, 15)">
+      <line x1="0" y1="9" x2="30" y2="9" stroke="#f43f5e" stroke-width="2" stroke-dasharray="4 4" marker-end="url(#arrowRose)"/>
+      <text x="38" y="13" fill="#e2e8f0" font-size="11" font-weight="600">Closed-Loop Model Recalibration</text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,10 @@
+{
+  "battery_id": "BRAIN001",
+  "voltage": 48.5,
+  "current": 15,
+  "temperature": 32,
+  "cycle_number": 350,
+  "capacity": 1.85,
+  "resistance": 0.035,
+  "fault": "NORMAL"
+}
