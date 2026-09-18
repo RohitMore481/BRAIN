@@ -80,6 +80,44 @@ export default function BluetoothCommPanel({ state }) {
           </div>
         </div>
 
+        {/* START/STOP BLE BROADCAST BUTTON */}
+        <button
+          onClick={() => {
+            const nextState = !window.isRohitBleBroadcasting;
+            window.isRohitBleBroadcasting = nextState;
+            try {
+              if (nextState) {
+                const broadcastPayload = {
+                  id: 'ROHIT-MORE-96S',
+                  name: 'Rohit More Virtual Battery (96S LFP)',
+                  type: 'Virtual BLE Broadcast',
+                  status: 'BROADCASTING',
+                  port: 5174,
+                  rssi: -42,
+                  timestamp: Date.now()
+                };
+                localStorage.setItem('brain_active_ble_broadcasts', JSON.stringify(broadcastPayload));
+                window.dispatchEvent(new Event('ble_broadcast_changed'));
+                alert('📶 BLE Bluetooth Broadcasting Started!\nDevice Name: Rohit More Virtual Battery (96S LFP)\nStatus: Active @ Port 5174. Open BRAIN Mobile APK to pair.');
+              } else {
+                localStorage.removeItem('brain_active_ble_broadcasts');
+                window.dispatchEvent(new Event('ble_broadcast_changed'));
+              }
+            } catch(e) {}
+            setShowModal(false);
+          }}
+          style={{
+            display: 'flex', alignItems: 'center', gap: 6,
+            backgroundColor: window.isRohitBleBroadcasting ? '#10b981' : 'rgba(16, 185, 129, 0.2)',
+            color: window.isRohitBleBroadcasting ? '#0f172a' : '#34d399',
+            border: '1px solid #10b981', borderRadius: 6,
+            padding: '3px 10px', fontSize: 10, fontWeight: 900, cursor: 'pointer'
+          }}
+        >
+          <Bluetooth size={12} />
+          {window.isRohitBleBroadcasting ? '🟢 BLE BROADCASTING ACTIVE' : '📶 START BLE BROADCAST'}
+        </button>
+
         {/* INSPECT BLE JSON BUTTON */}
         <button
           onClick={() => setShowModal(true)}
