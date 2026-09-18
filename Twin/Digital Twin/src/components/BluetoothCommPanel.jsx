@@ -17,6 +17,13 @@ export default function BluetoothCommPanel({ state }) {
   const bleStatus = getBluetoothBLEStatus(state);
   const currentPacket = generateTelemetryPacket(state);
 
+  React.useEffect(() => {
+    try {
+      localStorage.setItem('brain_rohit_more_telemetry', JSON.stringify(currentPacket));
+      window.dispatchEvent(new Event('rohit_telemetry_updated'));
+    } catch (e) {}
+  }, [JSON.stringify(currentPacket)]);
+
   const handleCopyJSON = () => {
     navigator.clipboard.writeText(JSON.stringify(currentPacket, null, 2));
     setCopied(true);
