@@ -1,467 +1,124 @@
-/* ==========================================================================
-   BATTERY DIGITAL TWIN SIMULATOR — COMPLETE DESIGN SYSTEM
-   EV Battery Virtual Laboratory
-   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..900;1,200..900&family=Outfit:wght@200..900&family=JetBrains+Mono:wght@400..800&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/* ─── DESIGN TOKENS ────────────────────────────────────────────────────── */
-:root {
-  /* Backgrounds */
-  --bg-void:     #020408;
-  --bg-deep:     #06090f;
-  --bg-dark:     #0a0f1a;
-  --bg-surface:  #0d1424;
-  --bg-card:     #111827;
-  --bg-elevated: #1a2234;
-  --bg-hover:    #1e293b;
-
-  /* Borders */
-  --border-dim:    rgba(255,255,255,0.05);
-  --border-soft:   rgba(255,255,255,0.09);
-  --border-medium: rgba(255,255,255,0.14);
-  --border-bright: rgba(255,255,255,0.22);
-
-  /* Flow Colors */
-  --flow-electrical: #22d3ee;      /* cyan - current */
-  --flow-electrical-glow: rgba(34,211,238,0.5);
-  --flow-thermal: #f97316;         /* orange - heat */
-  --flow-thermal-glow: rgba(249,115,22,0.5);
-  --flow-bms: #818cf8;             /* indigo - sensor data */
-  --flow-bms-glow: rgba(129,140,248,0.5);
-
-  /* Node Status Colors */
-  --status-optimal: #10b981;
-  --status-optimal-glow: rgba(16,185,129,0.35);
-  --status-warning: #f59e0b;
-  --status-warning-glow: rgba(245,158,11,0.4);
-  --status-critical: #ef4444;
-  --status-critical-glow: rgba(239,68,68,0.45);
-  --status-degraded: #a855f7;
-  --status-degraded-glow: rgba(168,85,247,0.4);
-  --status-offline: #475569;
-
-  /* Text */
-  --text-primary:   #f1f5f9;
-  --text-secondary: #94a3b8;
-  --text-muted:     #475569;
-  --text-dim:       #334155;
-
-  /* Fonts */
-  --font-ui:   'Inter', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+* {
+  font-family: 'Plus Jakarta Sans', 'Outfit', system-ui, -apple-system, sans-serif;
+  box-sizing: border-box;
 }
-
-/* ─── RESET & BASE ─────────────────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html, body, #root {
-  width: 100%; height: 100%;
-  overflow: hidden;
-  background: var(--bg-void);
-  color: var(--text-primary);
-  font-family: var(--font-ui);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  overflow-x: hidden;
 }
 
-/* Dot-grid background */
-body {
-  background-image:
-    radial-gradient(circle at 30% 20%, rgba(34,211,238,0.03) 0%, transparent 50%),
-    radial-gradient(circle at 70% 80%, rgba(249,115,22,0.03) 0%, transparent 50%),
-    radial-gradient(rgba(255,255,255,0.045) 1px, transparent 1px);
-  background-size: 100% 100%, 100% 100%, 28px 28px;
+.touch-scroll-active {
+  -webkit-overflow-scrolling: touch !important;
+  touch-action: pan-y !important;
 }
 
-/* Scrollbar */
-::-webkit-scrollbar { width: 5px; height: 5px; }
-::-webkit-scrollbar-track { background: var(--bg-void); }
-::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: var(--flow-bms); }
+@layer base {
+  body {
+    @apply bg-[#F8FAFC] text-[#0F172A] antialiased min-h-screen selection:bg-[#10B981]/25 selection:text-[#0F172A];
+    background-image: 
+      radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.06) 0%, transparent 60%),
+      radial-gradient(circle at 100% 100%, rgba(239, 68, 68, 0.04) 0%, transparent 50%);
+    background-attachment: fixed;
+  }
 
-/* ─── KEYFRAME ANIMATIONS ──────────────────────────────────────────────── */
-
-/* Particle motion along SVG paths */
-@keyframes particleMoveA {
-  0%   { opacity: 0; }
-  10%  { opacity: 1; }
-  90%  { opacity: 1; }
-  100% { opacity: 0; }
+  h1, h2, h3, .heading-tech {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    letter-spacing: -0.01em;
+  }
 }
 
-/* Pulsing glow ring on nodes */
-@keyframes nodeRingPulse {
-  0%   { opacity: 0.5; transform: scale(1); }
-  50%  { opacity: 1;   transform: scale(1.08); }
-  100% { opacity: 0.5; transform: scale(1); }
+/* Light Ola/Ather Automotive Panels & Cards */
+.glass-panel-premium {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 0 1px rgba(15, 23, 42, 0.08);
 }
 
-/* Breathing glow on critical nodes */
-@keyframes criticalBreath {
-  0%   { box-shadow: 0 0 8px  var(--status-critical), 0 0 0   rgba(239,68,68,0.2); }
-  50%  { box-shadow: 0 0 24px var(--status-critical), 0 0 40px rgba(239,68,68,0.3); }
-  100% { box-shadow: 0 0 8px  var(--status-critical), 0 0 0   rgba(239,68,68,0.2); }
+.glass-card-premium {
+  background: #FFFFFF;
+  border: 2px solid #10B981;
+  box-shadow: 0 10px 30px -5px rgba(16, 185, 129, 0.12), 0 0 1px rgba(15, 23, 42, 0.08);
 }
 
-@keyframes warningBreath {
-  0%   { box-shadow: 0 0 6px  var(--status-warning), 0 0 0   rgba(245,158,11,0.15); }
-  50%  { box-shadow: 0 0 18px var(--status-warning), 0 0 32px rgba(245,158,11,0.25); }
-  100% { box-shadow: 0 0 6px  var(--status-warning), 0 0 0   rgba(245,158,11,0.15); }
+.glass-card-hover {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
-/* Scanning line */
-@keyframes scanline {
-  0%   { top: 0%; opacity: 0.6; }
-  100% { top: 100%; opacity: 0; }
-}
-
-/* Blink for active state badges */
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0.4; }
-}
-
-/* Fade-slide in for panels */
-@keyframes fadeSlideIn {
-  from { opacity: 0; transform: translateX(20px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* Flow pulse on path lines */
-@keyframes electricalDash {
-  to { stroke-dashoffset: -32; }
-}
-@keyframes thermalDash {
-  to { stroke-dashoffset: -24; }
-}
-@keyframes bmsDash {
-  to { stroke-dashoffset: -20; }
-}
-
-/* Data flicker */
-@keyframes dataFlicker {
-  0%, 95%, 100% { opacity: 1; }
-  97%            { opacity: 0.3; }
-}
-
-/* ─── UTILITY CLASSES ──────────────────────────────────────────────────── */
-
-.font-mono { font-family: var(--font-mono); }
-.text-xs   { font-size: 10px; }
-.text-sm   { font-size: 11px; }
-.text-base { font-size: 13px; }
-.text-md   { font-size: 14px; }
-
-.status-optimal  { color: var(--status-optimal); }
-.status-warning  { color: var(--status-warning); }
-.status-critical { color: var(--status-critical); }
-.status-degraded { color: var(--status-degraded); }
-
-/* ─── NODE COMPONENT CARD STYLES ───────────────────────────────────────── */
-
-.twin-node {
-  position: relative;
-  border-radius: 14px;
-  background: var(--bg-card);
-  border: 1.5px solid var(--border-soft);
-  cursor: pointer;
-  transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1),
-              box-shadow 0.25s ease,
-              border-color 0.2s ease;
-  overflow: hidden;
-  user-select: none;
-}
-
-.twin-node::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
-}
-
-.twin-node:hover {
-  transform: translateY(-3px) scale(1.01);
-  z-index: 10;
-}
-
-.twin-node.selected {
-  border-color: var(--flow-bms) !important;
-  box-shadow: 0 0 0 2px rgba(129,140,248,0.25),
-              0 8px 32px rgba(0,0,0,0.5) !important;
+.glass-card-hover:hover {
+  border-color: #10B981;
   transform: translateY(-2px);
+  box-shadow: 0 12px 30px -4px rgba(16, 185, 129, 0.2);
 }
 
-.twin-node.status-optimal-node  {
-  border-color: rgba(16,185,129,0.4);
-  box-shadow: 0 0 12px rgba(16,185,129,0.15), 0 4px 16px rgba(0,0,0,0.4);
-}
-.twin-node.status-warning-node  {
-  border-color: rgba(245,158,11,0.5);
-  box-shadow: 0 0 16px rgba(245,158,11,0.2), 0 4px 16px rgba(0,0,0,0.4);
-  animation: warningBreath 2.5s ease-in-out infinite;
-}
-.twin-node.status-critical-node {
-  border-color: rgba(239,68,68,0.6);
-  box-shadow: 0 0 20px rgba(239,68,68,0.3), 0 4px 16px rgba(0,0,0,0.4);
-  animation: criticalBreath 1.8s ease-in-out infinite;
-}
-.twin-node.status-degraded-node {
-  border-color: rgba(168,85,247,0.5);
-  box-shadow: 0 0 16px rgba(168,85,247,0.2), 0 4px 16px rgba(0,0,0,0.4);
+/* High Contrast Input Fields (Light Mode) */
+.input-high-contrast {
+  @apply w-full px-4 py-3.5 bg-white border-2 border-slate-300 rounded-xl text-base font-bold text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#10B981] focus:ring-4 focus:ring-[#10B981]/20 transition-all shadow-sm;
 }
 
-/* ─── FLOW ANIMATION STYLES (SVG) ─────────────────────────────────────── */
-
-.flow-line-electrical {
-  stroke: var(--flow-electrical);
-  stroke-width: 2.5;
-  fill: none;
-  stroke-dasharray: 10 6;
-  animation: electricalDash 0.6s linear infinite;
-  filter: drop-shadow(0 0 4px var(--flow-electrical));
+/* Bright Electric Indicators */
+.glow-border-green {
+  border: 2px solid #10B981 !important;
+  box-shadow: 0 0 18px rgba(16, 185, 129, 0.35) !important;
 }
 
-.flow-line-thermal {
-  stroke: var(--flow-thermal);
-  stroke-width: 2.5;
-  fill: none;
-  stroke-dasharray: 8 5;
-  animation: thermalDash 0.9s linear infinite;
-  filter: drop-shadow(0 0 4px var(--flow-thermal));
+.glow-border-red {
+  border: 2px solid #EF4444 !important;
+  box-shadow: 0 0 18px rgba(239, 68, 68, 0.35) !important;
 }
 
-.flow-line-bms {
-  stroke: var(--flow-bms);
-  stroke-width: 1.8;
-  fill: none;
-  stroke-dasharray: 5 4;
-  animation: bmsDash 1.2s linear infinite;
-  filter: drop-shadow(0 0 3px var(--flow-bms));
-  opacity: 0.85;
+/* Status Pulse Animations */
+@keyframes softPulseGreen {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 18px rgba(16, 185, 129, 0.9);
+    transform: scale(1.06);
+  }
 }
 
-.flow-line-base {
-  stroke: rgba(255,255,255,0.07);
-  stroke-width: 1.5;
-  fill: none;
+@keyframes pulseRed {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(239, 68, 68, 0.6);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.95);
+    transform: scale(1.08);
+  }
 }
 
-/* Particle dots on flow lines */
-.flow-particle-elec {
-  fill: var(--flow-electrical);
-  filter: drop-shadow(0 0 5px var(--flow-electrical));
-}
-.flow-particle-thermal {
-  fill: var(--flow-thermal);
-  filter: drop-shadow(0 0 5px var(--flow-thermal));
-}
-.flow-particle-bms {
-  fill: var(--flow-bms);
-  filter: drop-shadow(0 0 4px var(--flow-bms));
+.status-pulse-green {
+  animation: softPulseGreen 2s infinite ease-in-out;
 }
 
-/* ─── PANEL & DRAWER STYLES ─────────────────────────────────────────────── */
-
-.panel-glass {
-  background: rgba(13, 20, 36, 0.92);
-  backdrop-filter: blur(20px) saturate(1.4);
-  -webkit-backdrop-filter: blur(20px) saturate(1.4);
-  border: 1px solid var(--border-soft);
+.status-pulse-red {
+  animation: pulseRed 1.2s infinite ease-in-out;
 }
 
-/* ─── BUTTON STYLES ─────────────────────────────────────────────────────── */
-
-.btn {
-  display: inline-flex; align-items: center; justify-content: center;
-  gap: 5px;
-  padding: 6px 12px;
-  border-radius: 7px;
-  font-size: 11px; font-weight: 700;
-  font-family: var(--font-ui);
-  border: 1px solid transparent;
-  cursor: pointer;
-  transition: all 0.15s ease;
-  white-space: nowrap;
+/* Custom Light Mode Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
 }
-.btn:active { transform: scale(0.96); }
-
-.btn-primary {
-  background: #0ea5e9;
-  color: #fff;
-  border-color: #38bdf8;
-  box-shadow: 0 0 12px rgba(14,165,233,0.3);
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
 }
-.btn-primary:hover { background: #38bdf8; box-shadow: 0 0 16px rgba(56,189,248,0.4); }
-
-.btn-ghost {
-  background: rgba(255,255,255,0.05);
-  color: var(--text-secondary);
-  border-color: var(--border-soft);
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
 }
-.btn-ghost:hover { background: rgba(255,255,255,0.09); color: var(--text-primary); }
-
-.btn-danger {
-  background: rgba(239,68,68,0.15);
-  color: #f87171;
-  border-color: rgba(239,68,68,0.35);
+::-webkit-scrollbar-thumb:hover {
+  background: #10B981;
 }
-.btn-danger:hover { background: rgba(239,68,68,0.25); box-shadow: 0 0 12px rgba(239,68,68,0.25); }
-
-.btn-active {
-  background: rgba(16,185,129,0.15);
-  color: #34d399;
-  border-color: rgba(16,185,129,0.35);
-}
-
-/* ─── BADGE / CHIP STYLES ───────────────────────────────────────────────── */
-
-.chip {
-  display: inline-flex; align-items: center; gap: 4px;
-  padding: 2px 8px;
-  border-radius: 20px;
-  font-size: 10px; font-weight: 700;
-  font-family: var(--font-mono);
-  border: 1px solid;
-  white-space: nowrap;
-}
-
-.chip-elec    { color: var(--flow-electrical); border-color: rgba(34,211,238,0.3);   background: rgba(34,211,238,0.08); }
-.chip-thermal { color: var(--flow-thermal);    border-color: rgba(249,115,22,0.3);   background: rgba(249,115,22,0.08); }
-.chip-bms     { color: var(--flow-bms);        border-color: rgba(129,140,248,0.3);  background: rgba(129,140,248,0.08); }
-.chip-ok      { color: var(--status-optimal);  border-color: rgba(16,185,129,0.35);  background: rgba(16,185,129,0.08); }
-.chip-warn    { color: var(--status-warning);  border-color: rgba(245,158,11,0.35);  background: rgba(245,158,11,0.08); }
-.chip-crit    { color: var(--status-critical); border-color: rgba(239,68,68,0.35);   background: rgba(239,68,68,0.1); }
-.chip-deg     { color: var(--status-degraded); border-color: rgba(168,85,247,0.35);  background: rgba(168,85,247,0.08); }
-
-/* ─── VALUE DISPLAY ─────────────────────────────────────────────────────── */
-
-.telemetry-value {
-  font-family: var(--font-mono);
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  animation: dataFlicker 8s infinite;
-}
-
-/* ─── SECTION DIVIDER ───────────────────────────────────────────────────── */
-
-.divider {
-  height: 1px;
-  background: var(--border-dim);
-  margin: 10px 0;
-}
-
-/* ─── RANGE INPUT ───────────────────────────────────────────────────────── */
-
-input[type=range] {
-  appearance: none;
-  -webkit-appearance: none;
-  height: 4px;
-  border-radius: 2px;
-  background: var(--bg-elevated);
-  outline: none;
-  cursor: pointer;
-}
-input[type=range]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 14px; height: 14px;
-  border-radius: 50%;
-  background: var(--flow-electrical);
-  box-shadow: 0 0 6px var(--flow-electrical);
-}
-
-/* ─── SCAN LINE EFFECT ON HEADER ────────────────────────────────────────── */
-
-.scanline-container {
-  position: relative;
-  overflow: hidden;
-}
-.scanline-container::after {
-  content: '';
-  position: absolute;
-  left: 0; right: 0;
-  height: 60px;
-  background: linear-gradient(to bottom, transparent, rgba(34,211,238,0.03), transparent);
-  animation: scanline 4s linear infinite;
-  pointer-events: none;
-}
-
-/* ─── ACTIVE INDICATOR DOT ──────────────────────────────────────────────── */
-
-.active-dot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: var(--status-optimal);
-  box-shadow: 0 0 8px var(--status-optimal);
-  animation: blink 2s ease-in-out infinite;
-  display: inline-block;
-}
-
-/* ─── TREE HIERARCHY (LEFT SIDEBAR) ────────────────────────────────────── */
-
-.hierarchy-item {
-  border-radius: 8px;
-  padding: 6px 10px;
-  cursor: pointer;
-  transition: background 0.15s ease;
-  font-size: 12px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.hierarchy-item:hover { background: var(--bg-hover); }
-.hierarchy-item.active { background: rgba(129,140,248,0.12); }
-
-/* ─── INSPECTOR DRAWER ──────────────────────────────────────────────────── */
-
-.inspector-drawer {
-  animation: fadeSlideIn 0.25s cubic-bezier(0.34,1.56,0.64,1);
-}
-
-/* ─── BMS OUTPUT PANEL ──────────────────────────────────────────────────── */
-
-.bms-output-panel {
-  animation: fadeSlideIn 0.2s ease;
-}
-
-.bms-cell-row {
-  border-radius: 8px;
-  padding: 8px 10px;
-  background: var(--bg-surface);
-  border: 1px solid var(--border-dim);
-  transition: border-color 0.2s ease;
-}
-.bms-cell-row:hover { border-color: var(--border-soft); }
-.bms-cell-row.has-warning { border-color: rgba(245,158,11,0.35); background: rgba(245,158,11,0.04); }
-.bms-cell-row.has-critical { border-color: rgba(239,68,68,0.4); background: rgba(239,68,68,0.06); }
-
-/* ─── CANVAS WRAPPER ────────────────────────────────────────────────────── */
-
-.canvas-wrapper {
-  position: relative;
-  overflow: auto;
-  flex: 1;
-  background: var(--bg-deep);
-}
-
-/* ─── FAULT INJECTION PANEL ─────────────────────────────────────────────── */
-
-.fault-btn {
-  padding: 8px 10px;
-  border-radius: 9px;
-  border: 1.5px solid;
-  background: var(--bg-card);
-  cursor: pointer;
-  transition: all 0.18s ease;
-  text-align: left;
-  font-family: var(--font-ui);
-}
-.fault-btn:hover { transform: translateY(-1px); }
-.fault-btn.fault-active { animation: warningBreath 2s ease-in-out infinite; }
