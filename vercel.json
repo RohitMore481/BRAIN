@@ -1,0 +1,11 @@
+{
+  "buildCommand": "cd \"Twin/Digital Twin/mobile_application\" && npm install && npm run build",
+  "outputDirectory": "Twin/Digital Twin/mobile_application/dist",
+  "framework": "vite",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "rohit-more-brain-root",
+  "private": true,
+  "scripts": {
+    "build": "cd \"Twin/Digital Twin/mobile_application\" && npm install && npm run build"
+  }
+}
